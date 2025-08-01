@@ -15,6 +15,15 @@ def load_image(url):
         print(f'Произошла ошибка: {e}')
         return None
 
+def open_new_window():
+    img = load_image(url)
+    if img:
+        new_window = Toplevel()
+        new_window.title('Картинка с котиком')
+        new_window.geometry('600x480')
+        label.image = img
+        label.pack()
+
 def set_image():
     img = load_image(url)
 
@@ -24,8 +33,6 @@ def set_image():
 
 def exit():
     window.destroy()
-
-
 
 
 window = Tk()
@@ -39,13 +46,13 @@ label.pack()
 # update_button.pack()
 
 menu_bar = Menu(window)
-window.config(menu_bar)
+window.config(menu = menu_bar)
 
 file_menu = Menu(menu_bar, tearoff=0)
-menu_bar.add.cascade(label='Файл', menu=file_menu)
-file_menu.add.command(label='Загрузить фото', command=set_image)
-file_menu.add.separator()
-file_menu.add.command(label='Выход', command=exit)
+menu_bar.add_cascade(label='Файл', menu=file_menu)
+file_menu.add_command(label='Загрузить фото', command=set_image)
+file_menu.add_separator()
+file_menu.add_command(label='Выход', command=exit)
 
 url = "https://cataas.com/cat"
 img = load_image(url)
